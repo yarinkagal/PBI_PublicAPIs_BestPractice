@@ -1,0 +1,22 @@
+{
+
+  "auth": {
+    "clientId": "849efc11-1579-4345-88e1-baa6ea935748",
+    "tenantId": "82e09e3a-99a6-4ec0-a928-e8a90bcd1515"
+
+
+  },
+  "modified": {
+    "modifiedSince": "2023-11-11T15:45:30.0000000-07:00",
+    "excludeInActiveWorkspaces": false,
+    "excludePersonalWorkspaces": false,
+    "requestsLimit": 30,
+    "limitDurationInMinutes": 60
+  }
+
+
+
+
+
+
+}
