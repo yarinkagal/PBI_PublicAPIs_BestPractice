@@ -1,0 +1,15 @@
+{
+  "id": "c93a8caf-20b4-48a6-ab3c-004ab374a175",
+  "name": "TridentLoadTesting-CRUD-34-4",
+  "description": "```config{\"placementPreferenceTag\":\"DsStabn_SWIFT01\",\"description\":\"sbeard - Stress Tests\"}",
+  "type": "Workspace",
+  "state": "Deleted",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Small",
+  "reports": [],
+  "dashboards": [],
+  "datasets": [],
+  "dataflows": [],
+  "datamarts": []
+}

@@ -1,0 +1,27 @@
+{
+  "id": "c276f38f-2c99-4af8-8093-006c36709cc1",
+  "name": "OLCIntTest_20231007_1408_c2f772f7_f84f_4157_960e_2a05b8c1fb2e",
+  "type": "Workspace",
+  "state": "Deleted",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Unknown",
+  "reports": [],
+  "dashboards": [],
+  "datasets": [
+    {
+      "id": "a9a15d61-8db1-4221-b790-16f9ed7cf032",
+      "name": "OLCIntTest_20231007_1408_0e6417f5_149b_4a31_8981_0985e0fb2aa2",
+      "tables": [],
+      "configuredBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "configuredById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "isEffectiveIdentityRequired": false,
+      "isEffectiveIdentityRolesRequired": false,
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-10-07T14:09:09.59",
+      "contentProviderType": "InImportMode"
+    }
+  ],
+  "dataflows": [],
+  "datamarts": []
+}

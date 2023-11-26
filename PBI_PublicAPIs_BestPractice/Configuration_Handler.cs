@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -36,24 +37,25 @@ namespace PBI_PublicAPIs_BestPractice
             }
         }
 
-        public async Task<string> addAccessToken()
+
+        public JObject getApiSettings(string apiName)
         {
-            Auth_Handler authHandler = new Auth_Handler();
-            string accessToken = await authHandler.authenticate();
-            Configuration_Handler.Instance.addConfig("auth", "accessToken", accessToken);
-            return accessToken;
+            return (JObject)_configurationSettings[apiName];
         }
 
         public JToken getConfig(string apiName, string parameterName)
         {
-            Configuration_Handler configuration_Handler = Configuration_Handler.Instance;
 
-
-
-            if(configuration_Handler._configurationSettings.TryGetValue(apiName, out var apiSettings) &&
+            if(_configurationSettings.TryGetValue(apiName, out var apiSettings) &&
                 ((JObject)apiSettings).TryGetValue(parameterName, out JToken parameterValue))
 
             {
+                if (parameterName.Equals("modifiedSince") && DateTime.TryParse((string)parameterValue, out DateTime dateTime))
+                {
+                    string iso8601Time = dateTime.ToString("O");
+                    return iso8601Time;
+                }
+
                 return parameterValue;
             }
             else
@@ -62,13 +64,20 @@ namespace PBI_PublicAPIs_BestPractice
             }
         }
 
-        public bool addConfig(string apiName, string parameterName, JToken value)
+        public bool setConfig(string apiName, string parameterName, JToken value)
         {
-            Configuration_Handler configuration_Handler = Configuration_Handler.Instance;
-            configuration_Handler._configurationSettings.TryGetValue(apiName, out object apiSettings);
-            bool result =((JObject)apiSettings).TryAdd(parameterName ,value);
+            try { 
+                _configurationSettings.TryGetValue(apiName, out object apiSettings);
+                ((JObject)apiSettings)[parameterName] = value;
             
-            return result;
+                string jsonString = JsonConvert.SerializeObject(_configurationSettings, Formatting.Indented);
+                File.WriteAllText(_configurationFilePath, jsonString);
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
         }
 
     }

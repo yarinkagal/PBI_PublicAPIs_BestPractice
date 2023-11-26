@@ -1,0 +1,89 @@
+{
+  "id": "fae5e3e8-9878-4b97-b763-00182c0af4f3",
+  "name": "rs_2404",
+  "type": "Workspace",
+  "state": "Active",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Small",
+  "reports": [
+    {
+      "reportType": "PowerBIReport",
+      "id": "515ad960-d119-469b-b5d6-641d54809370",
+      "name": "FinacialPBX (3) (2)",
+      "datasetId": "d5f8ada6-4588-4ea2-adc9-1de690b26e22",
+      "createdDateTime": "2023-04-24T06:24:35.477",
+      "modifiedDateTime": "2023-04-24T06:24:35.477",
+      "modifiedBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "createdBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "modifiedById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "createdById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "sensitivityLabel": {
+        "labelId": "afa34936-8b08-4440-93e8-a6f2aa22eade"
+      }
+    },
+    {
+      "reportType": "PowerBIReport",
+      "id": "c1ed7161-2100-415f-a0ce-fe88a11c4631",
+      "name": "NESGames",
+      "datasetId": "ae4d821f-148d-45bc-bdcc-cdfcca557b57",
+      "createdDateTime": "2023-04-24T06:24:39.327",
+      "modifiedDateTime": "2023-04-24T06:24:39.327",
+      "modifiedBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "createdBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "modifiedById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "createdById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "sensitivityLabel": {
+        "labelId": "afa34936-8b08-4440-93e8-a6f2aa22eade"
+      }
+    }
+  ],
+  "dashboards": [
+    {
+      "id": "c64c15d6-1c8e-4648-a8f2-d4d777642b92",
+      "displayName": "FinacialPBX (3) (2).pbix",
+      "isReadOnly": false,
+      "tiles": []
+    },
+    {
+      "id": "4fa4dacd-3ebd-4506-9396-4e9cf4ba5f40",
+      "displayName": "NESGames.pbix",
+      "isReadOnly": false,
+      "tiles": []
+    }
+  ],
+  "datasets": [
+    {
+      "id": "d5f8ada6-4588-4ea2-adc9-1de690b26e22",
+      "name": "FinacialPBX (3) (2)",
+      "tables": [],
+      "configuredBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "configuredById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "isEffectiveIdentityRequired": true,
+      "isEffectiveIdentityRolesRequired": true,
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-04-24T06:24:15.377",
+      "contentProviderType": "PbixInImportMode",
+      "sensitivityLabel": {
+        "labelId": "afa34936-8b08-4440-93e8-a6f2aa22eade"
+      }
+    },
+    {
+      "id": "ae4d821f-148d-45bc-bdcc-cdfcca557b57",
+      "name": "NESGames",
+      "tables": [],
+      "configuredBy": "RS_testuser1@pbidaily.onmicrosoft.com",
+      "configuredById": "ecea4eef-d999-45ad-94f0-3e9c08093c2a",
+      "isEffectiveIdentityRequired": false,
+      "isEffectiveIdentityRolesRequired": false,
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-04-24T06:24:21.377",
+      "contentProviderType": "PbixInImportMode",
+      "sensitivityLabel": {
+        "labelId": "afa34936-8b08-4440-93e8-a6f2aa22eade"
+      }
+    }
+  ],
+  "dataflows": [],
+  "datamarts": []
+}

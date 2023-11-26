@@ -1,0 +1,27 @@
+{
+  "id": "b1508334-8bed-4d1f-9b7b-006178920fce",
+  "name": "OnelakeClient_20230926_2227_8778bb9d_9972_4f01_8e2c_abe6cb52c3bb",
+  "type": "Workspace",
+  "state": "Deleted",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Unknown",
+  "reports": [],
+  "dashboards": [],
+  "datasets": [
+    {
+      "id": "b0581764-e2bd-4988-a052-9729e2d20aac",
+      "name": "OnelakeClient_20230926_2227_72107aaf_e4ce_4dd1_8914_7b2bbb4eaa36",
+      "tables": [],
+      "configuredBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "configuredById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "isEffectiveIdentityRequired": false,
+      "isEffectiveIdentityRolesRequired": false,
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-09-26T22:46:11.657",
+      "contentProviderType": "InImportMode"
+    }
+  ],
+  "dataflows": [],
+  "datamarts": []
+}

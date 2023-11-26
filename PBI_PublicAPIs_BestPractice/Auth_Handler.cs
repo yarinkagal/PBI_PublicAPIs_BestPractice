@@ -31,8 +31,7 @@ namespace PBI_PublicAPIs_BestPractice
             string clientId = (string)Configuration_Handler.Instance.getConfig(apiName, "clientId");
             string tenantId = (string)Configuration_Handler.Instance.getConfig(apiName, "tenantId");
 
-            string[] scopes = { "user.read", 
-                                "https://analysis.windows.net/powerbi/api/Tenant.Read.All", 
+            string[] scopes = { "https://analysis.windows.net/powerbi/api/Tenant.Read.All", 
                                 "https://analysis.windows.net/powerbi/api/Tenant.ReadWrite.All" 
                               }; // Use the appropriate scope for Power BI
 
