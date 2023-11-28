@@ -1,30 +1,26 @@
-﻿using Microsoft.Identity.Client;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System;
-using System.Net.Http.Headers;
-using System.Threading.Tasks;
+﻿using Azure.Core;
 using Microsoft.Identity.Client;
-using static System.Net.Mime.MediaTypeNames;
-
+using Microsoft.Win32.SafeHandles;
 
 namespace PBI_PublicAPIs_BestPractice
 {
     class Auth_Handler
     {   
-        public string apiName = "auth";
-        private string email { get; }
-        //public string /*accessToken*/ { get; set; }
-        public bool isConnected { get; set; }
-
-
-        public Auth_Handler()
+        private static Auth_Handler instance = null;
+        public static Auth_Handler Instance
         {
-            isConnected = false;
+            get
+            {
+                if (instance == null)
+                {
+                    instance = new Auth_Handler();
+                }
+                return instance;
+            }
         }
+        public string apiName = "auth";
+        public string accessToken {  get; set; }  
+
 
         public async Task<string> authenticate()
         {
@@ -38,7 +34,6 @@ namespace PBI_PublicAPIs_BestPractice
             Uri tenantAuthority = new Uri($"https://login.microsoftonline.com/{tenantId}");
 
             string redirectUri = "http://localhost";
-
             try
             {
                 IPublicClientApplication app = PublicClientApplicationBuilder
@@ -51,9 +46,7 @@ namespace PBI_PublicAPIs_BestPractice
                                     .WithUseEmbeddedWebView(false)
                                     .ExecuteAsync();
 
-                string accessToken = result.AccessToken;
-
-                isConnected = true;
+                Auth_Handler.Instance.accessToken = result.AccessToken;
                 return accessToken;
             }
 
@@ -62,40 +55,6 @@ namespace PBI_PublicAPIs_BestPractice
                 Console.WriteLine(ex.Message);
                 return null;
             }
-
         }
-
-
-
-
     }
-
-        ////string clientId = "your-client-id";
-        //string clientId = "849efc11-1579-4345-88e1-baa6ea935748";
-
-        ////string tenantId = "your-tenant-id";
-        //string tenantId = "82e09e3a-99a6-4ec0-a928-e8a90bcd1515";
-
-        //string authority = $"https://login.microsoftonline.com/common/oauth2/v2.0/authorize";
-
-        //string[] scopes = { "user.read", "https://analysis.windows.net/powerbi/api/Tenant.Read.All" }; // Use the appropriate scope for Power BI
-
-
-        //IPublicClientApplication app = PublicClientApplicationBuilder
-        //        .Create(clientId)
-        //        //.WithAuthority(authority)
-        //        .WithAuthority(new Uri($"https://login.microsoftonline.com/{tenantId}"))
-        //        .WithRedirectUri("http://localhost")
-        //        .Build();
-
-
-        //var result = await app.AcquireTokenInteractive(scopes)
-        //                    .WithUseEmbeddedWebView(false)
-        //                    .WithAuthority(authority)
-        //                    .ExecuteAsync();
-
-        //var token = result.AccessToken;
-    
-
-    
 }

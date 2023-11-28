@@ -1,13 +1,6 @@
-﻿using Azure;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Linq;
+﻿using Newtonsoft.Json.Linq;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace PBI_PublicAPIs_BestPractice.API_Handlers
 {
@@ -15,48 +8,45 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
     {
         public string apiName { get; set; }
         public UriBuilder apiUriBuilder { get; set; }
-        public Dictionary<string,object> parameters { get; set; }
-
-        
+        public JObject parameters { get; set; }
 
         public API_Handler(string apiName)
         {
             this.apiName = apiName;
-            this.parameters =  new Dictionary<string, object>();
+            parameters = new JObject();
             apiUriBuilder = new UriBuilder($"https://api.powerbi.com/v1.0/myorg/admin/workspaces/{apiName}");
         }
         
+        public abstract Task<object> run();
+
         public async Task<HttpResponseMessage> sendGetRequest()
         {
-            using (HttpClient client = new HttpClient())
+            using (HttpClient httpClient = new HttpClient())
             {
                 // Set the authorization header with the token
-                string accessToken = (string)Configuration_Handler.Instance.getConfig("auth", "accessToken");
-                client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
+                string accessToken = Auth_Handler.Instance.accessToken;
+                httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
                 // Send the GET request
-                HttpResponseMessage response = await client.GetAsync(apiUriBuilder.Uri);
+                HttpResponseMessage response = await httpClient.GetAsync(apiUriBuilder.Uri);
 
                 verifySuccess(response);
                 return response;
             }
         }
 
-        public abstract Task<object> run();
-           
-
         public void setParameters()
         {
-
-            string parametersString = "";
-            foreach (KeyValuePair<string, object> kvp in parameters)
+            //string parametersString = "";
+            StringBuilder parametersString = new StringBuilder();
+            foreach (JProperty apiProperty in parameters.Properties())
             {
-                parametersString += $"{kvp.Key}={kvp.Value}&";
+                JToken token = apiProperty.Value;
+                parametersString.Append($"{apiProperty.Name}={token.Value<object>()}&");
             }
-            apiUriBuilder.Query= parametersString;
 
+            apiUriBuilder.Query = parametersString.ToString();
         }
-
 
         public void verifySuccess(HttpResponseMessage response)
         {
@@ -67,10 +57,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                     $"(TODO ADD LINK) ");
             }
         }
-
-
-
-
 
     }
 }

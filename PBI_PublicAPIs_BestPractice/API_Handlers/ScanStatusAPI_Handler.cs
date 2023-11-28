@@ -9,8 +9,11 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 {
     public class ScanStatusAPI_Handler : API_Handler
     {
+        public string scanId;
+
         public ScanStatusAPI_Handler(string scanId) : base("scanStatus")
         {
+            this.scanId = scanId;
             apiUriBuilder.Path += $"/{scanId}";
         }
 
@@ -19,9 +22,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             HttpResponseMessage response = await sendGetRequest();
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
-
             JObject statusObject = JObject.Parse(jsonResponse);
-
             string statusValue = (string)statusObject["status"];
 
             return statusValue;

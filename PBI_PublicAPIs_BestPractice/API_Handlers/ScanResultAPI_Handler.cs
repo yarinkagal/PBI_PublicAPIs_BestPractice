@@ -11,15 +11,16 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 {
     public class ScanResultAPI_Handler : API_Handler
     {
+        
+        public string baseOutputFolder;
         public string scanId;
-        public string baseOutputFolder = "..\\..\\..\\outputs\\Workspaces";
-
 
         public ScanResultAPI_Handler(string scanId) : base("scanResult")
         {
             this.scanId = scanId;
             apiUriBuilder.Path += $"/{scanId}";
 
+            baseOutputFolder = (string)Configuration_Handler.Instance.getConfig(apiName, "baseOutputFolder");
             if (!Directory.Exists(baseOutputFolder))
             {
                 Directory.CreateDirectory(baseOutputFolder);
@@ -28,12 +29,11 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 
         public override async Task<object> run()
         {
+
             HttpResponseMessage response = await sendGetRequest();
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
-
             JObject resultObject = JObject.Parse(jsonResponse);
-
             JArray workspacesArray = (JArray)resultObject["workspaces"];
 
             // Now you can work with the "workspaces" array
@@ -48,15 +48,14 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 
                 DateTime currentTime = DateTime.Now;
                 string currentTimeString = currentTime.ToString("yyyy-MM-dd-HHmmss");
-                string outputFilePath = $"{outputFolder}\\{this.scanId}_{currentTimeString}.json";
+                string outputFilePath = $"{outputFolder}\\{scanId}_{currentTimeString}.json";
 
                 string workspaceJson = JsonConvert.SerializeObject(workspace, Formatting.Indented);
                 File.WriteAllText(outputFilePath, workspaceJson);
-
-               
             }
             return true;
         }
+
 
     }
 }

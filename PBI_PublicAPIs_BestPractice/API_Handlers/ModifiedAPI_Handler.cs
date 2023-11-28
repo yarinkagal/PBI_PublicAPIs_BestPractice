@@ -1,13 +1,11 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System.Net.Http.Headers;
-using System.Xml;
 
 namespace PBI_PublicAPIs_BestPractice.API_Handlers
 {
     public class ModifiedAPI_Handler : API_Handler
     {
-        public string outputFolder = "..\\..\\..\\outputs\\ModifiedWorkspaces";
+        public string outputFolder; 
 
         public ModifiedAPI_Handler() : base("modified")
         {
@@ -26,8 +24,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             
             setParameters();
 
-           
-
+            outputFolder = (string)Configuration_Handler.Instance.getConfig(apiName, "outputFolder");
             if (!Directory.Exists(outputFolder))
             {
                 Directory.CreateDirectory(outputFolder);
@@ -37,12 +34,13 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
         public override async Task<object> run()
         {
             HttpResponseMessage response = await sendGetRequest();
+
+            //The parameter modifiedSince should be in iso8601 format
             DateTime currentTimeUtc = DateTime.UtcNow;
             string iso8601Time = currentTimeUtc.ToString("O");
-            Configuration_Handler.Instance.setConfig(apiName, "modifiedSince", iso8601Time);
+            //Configuration_Handler.Instance.setConfig(apiName, "modifiedSince", iso8601Time);
 
             return await saveOutput(response.Content);
-            
         }
 
         public async Task<string> saveOutput(HttpContent content)
@@ -68,7 +66,5 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                 return outputFilePath;
             }
         }
-
-
     }
 }

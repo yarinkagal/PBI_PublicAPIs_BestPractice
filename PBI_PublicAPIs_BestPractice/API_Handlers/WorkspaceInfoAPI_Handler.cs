@@ -1,9 +1,7 @@
 ﻿using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using System;
 using System.Net.Http.Headers;
 using System.Text;
-using System.Text.Json.Nodes;
 
 namespace PBI_PublicAPIs_BestPractice.API_Handlers
 {
@@ -25,7 +23,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             {
                 if(property.Name != "chunkMaxSize")
                 {
-                    parameters.Add(property.Name, ((JValue) property.Value).Value);
+                    parameters.Add(property.Name, property.Value);
                 }
             }
 
@@ -38,7 +36,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             setParameters();
         }
 
-
         public override async Task<object> run()
         {
             int start;
@@ -47,7 +44,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             {
                 start = nextIndexToCheck;
                 length =  Math.Min(start + chunkMaxSize, worspacesIds.Length)-start;
-                nextIndexToCheck = start + length + 1 ;
+                nextIndexToCheck = start + length ;
             }
             string[] workspacesToScan = worspacesIds.Skip(start).Take(length).ToArray();
 
@@ -63,11 +60,10 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                     workspaces = workspacesToScan
                 };
 
-                string jsonPayload = JsonConvert.SerializeObject(requestBody);
+                string requestJsonString = JsonConvert.SerializeObject(requestBody);
+                HttpContent content = new StringContent(requestJsonString, Encoding.UTF8, "application/json");
 
-                HttpContent content = new StringContent(jsonPayload, Encoding.UTF8, "application/json");
-
-                string accessToken = (string)Configuration_Handler.Instance.getConfig("auth", "accessToken");
+                string accessToken = Auth_Handler.Instance.accessToken;
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
 
                 HttpResponseMessage response = await httpClient.PostAsync(apiUriBuilder.Uri, content);
@@ -77,12 +73,14 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                 if (response.Content != null)
                 {
                     var scanDetailsString = await response.Content.ReadAsStringAsync();
-                    var scanDetails = JsonConvert.DeserializeObject<Dictionary<string, string>>(scanDetailsString);
-                    if (scanDetails.TryGetValue("id", out string scanId))
-                    {
-                        return scanId;
-                    }
-                    
+
+                    JObject scanDetails = JObject.Parse(scanDetailsString);
+                    JToken token = scanDetails["id"];
+
+                    string scanId = token.Value<string>();
+
+                    return scanId;
+
                 }
                 return null;
             }
