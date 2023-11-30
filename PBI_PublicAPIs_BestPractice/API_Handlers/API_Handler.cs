@@ -51,7 +51,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 
         public void setParameters()
         {
-            //string parametersString = "";
             StringBuilder parametersString = new StringBuilder();
             foreach (JProperty apiProperty in parameters.Properties())
             {

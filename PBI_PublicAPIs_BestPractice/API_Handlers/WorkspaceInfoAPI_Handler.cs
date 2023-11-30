@@ -40,8 +40,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                 start = nextIndexToCheck;
                 length =  Math.Min(start + chunkMaxSize, worspacesIds.Length)-start;
                 nextIndexToCheck = start + length ;
-                //Console.WriteLine($"Start: {start}");
-                //Console.WriteLine($"End: {start+length-1}");
                 workspacesToScan = worspacesIds.Skip(start).Take(length).ToArray();
             }
 

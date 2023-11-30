@@ -10,6 +10,7 @@
   "modified": {
     "outputFolder": "..\\..\\..\\outputs\\ModifiedWorkspaces",
     "modifiedSince": "2023-11-30T15:09:52.1575684Z",
+    "alwaysFullScan":  false,
     "excludeInActiveWorkspaces": false,
     "excludePersonalWorkspaces": false,
     "requestsLimit": 30,

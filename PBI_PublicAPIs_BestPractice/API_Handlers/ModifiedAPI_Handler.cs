@@ -17,7 +17,8 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             parameters.Add("excludePersonalWorkspaces", excludePersonalWorkspaces);
 
             string modifiedSince = Configuration_Handler.Instance.getConfig(apiName, "modifiedSince").Value<string>();
-            if (!modifiedSince.Equals(""))
+            bool alwaysFullScan = Configuration_Handler.Instance.getConfig(apiName, "alwaysFullScan").Value<bool>();
+            if (!(Equals(modifiedSince,"") || alwaysFullScan ))
             {
                 parameters.Add("modifiedSince",modifiedSince);
             }
@@ -39,7 +40,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             DateTime currentTimeUtc = DateTime.UtcNow;
             string iso8601Time = currentTimeUtc.ToString("O");
             Configuration_Handler.Instance.setConfig(apiName, "modifiedSince", iso8601Time);
-            // or flag is true
 
             return await saveOutput(response.Content);
         }
