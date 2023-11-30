@@ -15,7 +15,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
         public WorkspaceInfoAPI_Handler(string worspacesFilePath) : base("getInfo")
         {
             worspacesIds = File.ReadAllLines(worspacesFilePath);
-            chunkMaxSize = (int)Configuration_Handler.Instance.getConfig(apiName, "chunkMaxSize");
+            chunkMaxSize = Configuration_Handler.Instance.getConfig(apiName, "chunkMaxSize").Value<int>();
             nextIndexToCheck = 0;
 
             JObject apiSettings = Configuration_Handler.Instance.getApiSettings(apiName);
@@ -26,12 +26,6 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                     parameters.Add(property.Name, property.Value);
                 }
             }
-
-            if ((bool)parameters["datasetExpressions"] && (bool)parameters["datasetSchema"])
-            {
-                Console.WriteLine("datasetSchema can not set to false while datasetExpressions is set to true");
-                throw new Exception($"Please check console - {apiName}");
-            }
            
             setParameters();
         }
@@ -40,17 +34,20 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
         {
             int start;
             int length;
+            string[] workspacesToScan;
             lock (lockObject)
             {
                 start = nextIndexToCheck;
                 length =  Math.Min(start + chunkMaxSize, worspacesIds.Length)-start;
                 nextIndexToCheck = start + length ;
+                //Console.WriteLine($"Start: {start}");
+                //Console.WriteLine($"End: {start+length-1}");
+                workspacesToScan = worspacesIds.Skip(start).Take(length).ToArray();
             }
-            string[] workspacesToScan = worspacesIds.Skip(start).Take(length).ToArray();
 
-            if(workspacesToScan.Length == 0)
+            if (workspacesToScan.Length == 0)
             {
-                return null;
+                return "Done";
             }
 
             using (HttpClient httpClient = new HttpClient())
@@ -65,9 +62,16 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
 
                 string accessToken = Auth_Handler.Instance.accessToken;
                 httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", accessToken);
-
-                HttpResponseMessage response = await httpClient.PostAsync(apiUriBuilder.Uri, content);
-
+                HttpResponseMessage response;
+                try
+                {
+                    response = await httpClient.PostAsync(apiUriBuilder.Uri, content);
+                }
+                catch (Exception ex)
+                {
+                    throw new ScannerAPIException(apiName, "Can't send request");
+                    
+                }
                 verifySuccess(response);
 
                 if (response.Content != null)

@@ -10,13 +10,13 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
         public ModifiedAPI_Handler() : base("modified")
         {
 
-            bool excludeInActiveWorkspaces = (bool)Configuration_Handler.Instance.getConfig(apiName, "excludeInActiveWorkspaces");
-            bool excludePersonalWorkspaces = (bool)Configuration_Handler.Instance.getConfig(apiName, "excludePersonalWorkspaces");
+            bool excludeInActiveWorkspaces = Configuration_Handler.Instance.getConfig(apiName, "excludeInActiveWorkspaces").Value<bool>();
+            bool excludePersonalWorkspaces = Configuration_Handler.Instance.getConfig(apiName, "excludePersonalWorkspaces").Value<bool>();
 
             parameters.Add("excludeInActiveWorkspaces", excludeInActiveWorkspaces);
             parameters.Add("excludePersonalWorkspaces", excludePersonalWorkspaces);
 
-            string modifiedSince = (string)Configuration_Handler.Instance.getConfig(apiName, "modifiedSince");
+            string modifiedSince = Configuration_Handler.Instance.getConfig(apiName, "modifiedSince").Value<string>();
             if (!modifiedSince.Equals(""))
             {
                 parameters.Add("modifiedSince",modifiedSince);
@@ -24,7 +24,7 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             
             setParameters();
 
-            outputFolder = (string)Configuration_Handler.Instance.getConfig(apiName, "outputFolder");
+            outputFolder = Configuration_Handler.Instance.getConfig(apiName, "outputFolder").Value<string>();
             if (!Directory.Exists(outputFolder))
             {
                 Directory.CreateDirectory(outputFolder);
@@ -38,7 +38,8 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
             //The parameter modifiedSince should be in iso8601 format
             DateTime currentTimeUtc = DateTime.UtcNow;
             string iso8601Time = currentTimeUtc.ToString("O");
-            //Configuration_Handler.Instance.setConfig(apiName, "modifiedSince", iso8601Time);
+            Configuration_Handler.Instance.setConfig(apiName, "modifiedSince", iso8601Time);
+            // or flag is true
 
             return await saveOutput(response.Content);
         }

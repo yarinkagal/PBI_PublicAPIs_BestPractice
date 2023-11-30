@@ -1,6 +1,7 @@
 ﻿using Azure.Core;
 using Microsoft.Identity.Client;
 using Microsoft.Win32.SafeHandles;
+using Newtonsoft.Json.Linq;
 
 namespace PBI_PublicAPIs_BestPractice
 {
@@ -24,8 +25,8 @@ namespace PBI_PublicAPIs_BestPractice
 
         public async Task<string> authenticate()
         {
-            string clientId = (string)Configuration_Handler.Instance.getConfig(apiName, "clientId");
-            string tenantId = (string)Configuration_Handler.Instance.getConfig(apiName, "tenantId");
+            string clientId = Configuration_Handler.Instance.getConfig(apiName, "clientId").Value<string>();
+            string tenantId = Configuration_Handler.Instance.getConfig(apiName, "tenantId").Value<string>();
 
             string[] scopes = { "https://analysis.windows.net/powerbi/api/Tenant.Read.All", 
                                 "https://analysis.windows.net/powerbi/api/Tenant.ReadWrite.All" 

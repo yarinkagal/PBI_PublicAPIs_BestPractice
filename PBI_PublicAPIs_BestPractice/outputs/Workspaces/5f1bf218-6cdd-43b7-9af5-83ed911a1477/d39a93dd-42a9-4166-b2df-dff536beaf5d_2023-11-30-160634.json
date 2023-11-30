@@ -1,0 +1,127 @@
+{
+  "id": "5f1bf218-6cdd-43b7-9af5-83ed911a1477",
+  "name": "OLCIntTest_20231112_0206_0791612e_dc61_487a_8ed1_5fb97d1ceab0",
+  "type": "Workspace",
+  "state": "Active",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Unknown",
+  "Lakehouse": [
+    {
+      "id": "0666ad15-03df-4ed1-a254-a2e209f47aab",
+      "name": "OLCIntTest_20231112_0206_da84c57e_8fc5_4141_ba8b_0d63c5715dc9",
+      "description": null,
+      "state": "Active",
+      "lastUpdatedDate": "2023-11-24T15:32:53.9692615",
+      "modifiedBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "createdBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "modifiedById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "createdById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "sensitivityLabel": {
+        "labelId": "697e399f-de8a-45fc-aab2-98b269e3da98"
+      },
+      "users": [
+        {
+          "artifactUserAccessRight": "ReadWriteReshareExecute",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ],
+      "extendedProperties": {
+        "OneLakeTablesPath": "https://daily-onelake.dfs.fabric.microsoft.com/5f1bf218-6cdd-43b7-9af5-83ed911a1477/0666ad15-03df-4ed1-a254-a2e209f47aab/Tables",
+        "OneLakeFilesPath": "https://daily-onelake.dfs.fabric.microsoft.com/5f1bf218-6cdd-43b7-9af5-83ed911a1477/0666ad15-03df-4ed1-a254-a2e209f47aab/Files",
+        "DwProperties": "{\"tdsEndpoint\":\"hkpobavgthae5kji5cuqxtivcu-ddzbwx65ns3uhgxvqpwzcgquo4.daily-datawarehouse.fabric.microsoft.com\",\"id\":\"c894daa0-81e5-4ffa-ae92-afc8485cfaf2\",\"provisioningStatus\":\"Success\"}"
+      }
+    }
+  ],
+  "reports": [],
+  "dashboards": [],
+  "datasets": [
+    {
+      "id": "b8789050-0fe1-40bb-9a96-782f0ed574f4",
+      "name": "OLCIntTest_20231112_0206_da84c57e_8fc5_4141_ba8b_0d63c5715dc9",
+      "tables": [],
+      "configuredBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "configuredById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "isEffectiveIdentityRequired": false,
+      "isEffectiveIdentityRolesRequired": false,
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-11-12T02:07:10.003",
+      "contentProviderType": "InImportMode",
+      "sensitivityLabel": {
+        "labelId": "697e399f-de8a-45fc-aab2-98b269e3da98"
+      },
+      "relations": [
+        {
+          "dependentOnArtifactId": "c894daa0-81e5-4ffa-ae92-afc8485cfaf2",
+          "workspaceId": "5f1bf218-6cdd-43b7-9af5-83ed911a1477",
+          "relationType": "CascadeDelete",
+          "settingsList": "CascadeDelete",
+          "usage": "None"
+        }
+      ],
+      "users": [
+        {
+          "datasetUserAccessRight": "ReadWriteReshareExplore",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ]
+    }
+  ],
+  "dataflows": [],
+  "datamarts": [],
+  "SQLAnalyticsEndpoint": [
+    {
+      "id": "c894daa0-81e5-4ffa-ae92-afc8485cfaf2",
+      "name": "OLCIntTest_20231112_0206_da84c57e_8fc5_4141_ba8b_0d63c5715dc9",
+      "configuredBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "configuredById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "modifiedBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "modifiedById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "modifiedDateTime": "2023-11-24T15:32:53.6",
+      "sensitivityLabel": {
+        "labelId": "697e399f-de8a-45fc-aab2-98b269e3da98"
+      },
+      "users": [
+        {
+          "datamartUserAccessRight": "ReadWriteReshare",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ],
+      "relations": [
+        {
+          "dependentOnArtifactId": "0666ad15-03df-4ed1-a254-a2e209f47aab",
+          "workspaceId": "5f1bf218-6cdd-43b7-9af5-83ed911a1477",
+          "relationType": "CascadeDelete",
+          "settingsList": "CascadeDelete",
+          "usage": "None"
+        }
+      ]
+    }
+  ],
+  "users": [
+    {
+      "groupUserAccessRight": "Admin",
+      "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+      "displayName": "Alice Contoso",
+      "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+      "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "principalType": "User",
+      "userType": "Member"
+    }
+  ]
+}

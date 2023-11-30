@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "PBI_PublicAPIs_BestPractice": {
+      "commandName": "Project",
+      "commandLineArgs": "../../../configurationsFile.json"
+    }
+  }
+}

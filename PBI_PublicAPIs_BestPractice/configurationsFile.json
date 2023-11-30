@@ -1,6 +1,7 @@
 {
-  "general": {
-    "threadsCount": 16
+  "shared": {
+    "threadsCount": 8,
+    "defaultRetryAfter": 500
   },
   "auth": {
     "clientId": "849efc11-1579-4345-88e1-baa6ea935748",
@@ -8,7 +9,7 @@
   },
   "modified": {
     "outputFolder": "..\\..\\..\\outputs\\ModifiedWorkspaces",
-    "modifiedSince": "",
+    "modifiedSince": "2023-11-30T15:09:52.1575684Z",
     "excludeInActiveWorkspaces": false,
     "excludePersonalWorkspaces": false,
     "requestsLimit": 30,
@@ -30,6 +31,7 @@
     "limitDurationInMinutes": 60
   },
   "scanResult": {
+    "resultsStatusFolder": "..\\..\\..\\outputs\\Results",
     "baseOutputFolder": "..\\..\\..\\outputs\\Workspaces",
     "requestsLimit": 500,
     "limitDurationInMinutes": 60

@@ -1,0 +1,240 @@
+{
+  "id": "50b1e63f-4c8f-4522-8e2c-cd8c41e1643c",
+  "name": "PersonalWorkspace cf350837-ab20-4d04-b30c-c86abefa68fa",
+  "description": "SharepointList Folder",
+  "type": "Personal",
+  "state": "Active",
+  "isOnDedicatedCapacity": true,
+  "capacityId": "F9E26808-67A0-44A1-9E73-8FE4F6353AC9",
+  "defaultDatasetStorageFormat": "Small",
+  "dataexploration": [
+    {
+      "id": "716dddb5-f86d-4f49-9660-0ff612a15906",
+      "name": "CV_GetFormattingModelAPI_FormattingAndAnalyticsPane exploration",
+      "description": null,
+      "state": "Active",
+      "lastUpdatedDate": "2023-11-24T15:42:05.2175145",
+      "modifiedBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "createdBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "modifiedById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "createdById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "sensitivityLabel": {
+        "labelId": "697e399f-de8a-45fc-aab2-98b269e3da98"
+      },
+      "users": [
+        {
+          "artifactUserAccessRight": "ReadWriteReshare",
+          "emailAddress": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "displayName": "cf350837-ab20-4d04-b30c-c86abefa68fa SPList",
+          "identifier": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "graphId": "cf350837-ab20-4d04-b30c-c86abefa68fa",
+          "principalType": "User",
+          "userType": null
+        },
+        {
+          "artifactUserAccessRight": "ReadWriteReshare",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ],
+      "extendedProperties": {}
+    },
+    {
+      "id": "30e80d90-7914-42cb-af70-9f47ac3d1ad3",
+      "name": "vvvvvvvv",
+      "description": null,
+      "state": "Active",
+      "lastUpdatedDate": "2023-11-24T15:42:05.1081359",
+      "modifiedBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "createdBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "modifiedById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "createdById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "sensitivityLabel": {
+        "labelId": "697e399f-de8a-45fc-aab2-98b269e3da98"
+      },
+      "users": [
+        {
+          "artifactUserAccessRight": "ReadWriteReshare",
+          "emailAddress": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "displayName": "cf350837-ab20-4d04-b30c-c86abefa68fa SPList",
+          "identifier": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "graphId": "cf350837-ab20-4d04-b30c-c86abefa68fa",
+          "principalType": "User",
+          "userType": null
+        },
+        {
+          "artifactUserAccessRight": "ReadWriteReshare",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ],
+      "extendedProperties": {}
+    }
+  ],
+  "reports": [
+    {
+      "reportType": "PowerBIReport",
+      "id": "431ea18f-73a5-4fce-9164-e295998dc84b",
+      "name": "testreport",
+      "datasetId": "299844fa-8c89-4a2d-b772-1591e48d49db",
+      "createdDateTime": "2023-09-27T04:48:31.66",
+      "modifiedDateTime": "2023-09-27T04:48:31.66",
+      "modifiedBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "createdBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "modifiedById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "createdById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "users": [
+        {
+          "reportUserAccessRight": "Owner",
+          "emailAddress": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "displayName": "cf350837-ab20-4d04-b30c-c86abefa68fa SPList",
+          "identifier": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "graphId": "cf350837-ab20-4d04-b30c-c86abefa68fa",
+          "principalType": "User",
+          "userType": null
+        },
+        {
+          "reportUserAccessRight": "Owner",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        }
+      ]
+    }
+  ],
+  "dashboards": [],
+  "datasets": [
+    {
+      "id": "299844fa-8c89-4a2d-b772-1591e48d49db",
+      "name": "testreport",
+      "tables": [
+        {
+          "name": "Kusto Query Result",
+          "columns": [
+            {
+              "name": "Date",
+              "dataType": "DateTime",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "Open",
+              "dataType": "Double",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "High",
+              "dataType": "Double",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "Low",
+              "dataType": "Double",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "Close",
+              "dataType": "Double",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "AdjClose",
+              "dataType": "Double",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "Volume",
+              "dataType": "String",
+              "isHidden": false,
+              "columnType": "Data"
+            },
+            {
+              "name": "Ticker",
+              "dataType": "String",
+              "isHidden": false,
+              "columnType": "Data"
+            }
+          ],
+          "measures": [],
+          "isHidden": false
+        }
+      ],
+      "configuredBy": "AdminUser@pbidaily.onmicrosoft.com",
+      "configuredById": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "isEffectiveIdentityRequired": false,
+      "isEffectiveIdentityRolesRequired": false,
+      "directQueryRefreshSchedule": {
+        "frequency": 60,
+        "days": [],
+        "times": [],
+        "localTimeZoneId": "UTC"
+      },
+      "targetStorageMode": "Abf",
+      "createdDate": "2023-09-27T04:47:13.717",
+      "contentProviderType": "InDirectQueryMode",
+      "datasourceUsages": [
+        {
+          "datasourceInstanceId": "eb38f993-5afa-48b6-9b33-52b9d049142c"
+        }
+      ],
+      "users": [
+        {
+          "datasetUserAccessRight": "ReadWriteReshareExplore",
+          "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+          "displayName": "Alice Contoso",
+          "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+          "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+          "principalType": "User",
+          "userType": "Member"
+        },
+        {
+          "datasetUserAccessRight": "ReadWriteReshareExplore",
+          "emailAddress": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "displayName": "cf350837-ab20-4d04-b30c-c86abefa68fa SPList",
+          "identifier": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+          "graphId": "cf350837-ab20-4d04-b30c-c86abefa68fa",
+          "principalType": "User",
+          "userType": null
+        }
+      ]
+    }
+  ],
+  "dataflows": [],
+  "datamarts": [],
+  "users": [
+    {
+      "groupUserAccessRight": "Admin",
+      "emailAddress": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+      "displayName": "cf350837-ab20-4d04-b30c-c86abefa68fa SPList",
+      "identifier": "SPList-47aea0ee-f9ba-49e2-aeba-93516f545bb3",
+      "graphId": "cf350837-ab20-4d04-b30c-c86abefa68fa",
+      "principalType": "User",
+      "userType": null
+    },
+    {
+      "groupUserAccessRight": "Admin",
+      "emailAddress": "AdminUser@pbidaily.onmicrosoft.com",
+      "displayName": "Alice Contoso",
+      "identifier": "AdminUser@pbidaily.onmicrosoft.com",
+      "graphId": "90182ce9-5c4e-4a7d-bf84-4dd40c8a5152",
+      "principalType": "User",
+      "userType": "Member"
+    }
+  ]
+}

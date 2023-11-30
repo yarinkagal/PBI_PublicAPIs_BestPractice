@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <Folder Include="outputs\ModifiedWorkspaces\" />
+    <Folder Include="outputs\Results\" />
   </ItemGroup>
 
 </Project>

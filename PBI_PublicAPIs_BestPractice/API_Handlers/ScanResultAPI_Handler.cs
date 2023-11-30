@@ -15,12 +15,15 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
         public string baseOutputFolder;
         public string scanId;
 
+        private readonly object lockObject = new object();
+        public int scannedCounter;
+
         public ScanResultAPI_Handler(string scanId) : base("scanResult")
         {
             this.scanId = scanId;
             apiUriBuilder.Path += $"/{scanId}";
 
-            baseOutputFolder = (string)Configuration_Handler.Instance.getConfig(apiName, "baseOutputFolder");
+            baseOutputFolder = Configuration_Handler.Instance.getConfig(apiName, "baseOutputFolder").Value<string>();
             if (!Directory.Exists(baseOutputFolder))
             {
                 Directory.CreateDirectory(baseOutputFolder);
@@ -50,9 +53,34 @@ namespace PBI_PublicAPIs_BestPractice.API_Handlers
                 string currentTimeString = currentTime.ToString("yyyy-MM-dd-HHmmss");
                 string outputFilePath = $"{outputFolder}\\{scanId}_{currentTimeString}.json";
 
+                
                 string workspaceJson = JsonConvert.SerializeObject(workspace, Formatting.Indented);
-                File.WriteAllText(outputFilePath, workspaceJson);
+                using (StreamWriter stream = new StreamWriter(outputFilePath))
+                {
+                    try
+                    {
+                        stream.Write(workspaceJson);
+                    }
+                    catch { }
+                    stream.Close();
+                }
+                
+                lock(lockObject)
+                {
+                    scannedCounter += workspacesArray.Count;
+                    if(workspacesArray.Count < Configuration_Handler.Instance.getConfig("getInfo", "chunkMaxSize").Value<int>())
+                    {
+                       
+                        string resultStatusPath = Configuration_Handler.Instance.getConfig("scanResult", "resultsStatusFolder").Value<string>();
+                        using (StreamWriter stream = new StreamWriter($"{resultStatusPath}\\{currentTimeString}", append: true))
+                        {
+                            stream.WriteLine($"Succeeded to scan {scannedCounter} workspaces.");
+                            stream.Close();
+                        }
+                    }
+                }
             }
+
             return true;
         }
 

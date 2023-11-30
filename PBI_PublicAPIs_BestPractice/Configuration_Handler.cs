@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Text.Json.Nodes;
-using System.Threading.Tasks;
-using System.Xml.Linq;
+﻿
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 
@@ -15,14 +9,12 @@ namespace PBI_PublicAPIs_BestPractice
     {
         private static Configuration_Handler instance = null;
 
-        public string _configurationFilePath = "../../../configurationsFile.json";
-        public JObject _configurationSettings { get; }
+        public string _configurationFilePath { get; set; }
+        public JObject _configurationSettings { get; set; }
 
         private Configuration_Handler() 
         {
-            string jsonString = File.ReadAllText(this._configurationFilePath);
-            //_configurationSettings = JsonConvert.DeserializeObject<Dictionary<string, object>>(jsonString);
-            _configurationSettings = JObject.Parse(jsonString);
+            
         }
 
         public static Configuration_Handler Instance
@@ -35,6 +27,50 @@ namespace PBI_PublicAPIs_BestPractice
                 }
                 return instance;
             }
+        }
+
+        public void setConfigurationsFile(string configurationFilePath)
+        {
+            _configurationFilePath = configurationFilePath;
+            string jsonString = File.ReadAllText(_configurationFilePath);
+            _configurationSettings = JObject.Parse(jsonString);
+            validateConfigs();
+        }
+
+        private void validateConfigs()
+        {
+            int threadsCount = getConfig("shared", "threadsCount").Value<int>();
+            if ( threadsCount<1 || threadsCount>16)
+            {
+                string errorMessage = "The number of threads need to be between 1-16.";
+                throw new ScannerAPIException("Configurations", errorMessage);
+            }
+
+            int defaultRetryAfter = getConfig("shared", "defaultRetryAfter").Value<int>();
+            if (defaultRetryAfter <= 0 )
+            {
+                string errorMessage = "The defaultRetryAfter need to be a positive number.";
+                throw new ScannerAPIException("Configurations", errorMessage);
+            }
+
+
+            bool datasetExpressions = getConfig("getInfo", "datasetExpressions").Value<bool>();
+            bool datasetSchema = getConfig("getInfo", "datasetSchema").Value<bool>();
+            if (datasetExpressions && !datasetSchema)
+            {
+                string errorMessage = "datasetSchema can not set to false while datasetExpressions is set to true";
+                throw new ScannerAPIException("getInfo", errorMessage);
+            }
+
+            int chunkMaxSize = getConfig("getInfo", "chunkMaxSize").Value<int>();
+            if (chunkMaxSize < 1 || chunkMaxSize > 100)
+            {
+                string errorMessage = "The number of threads need to be between 1-100.";
+                throw new ScannerAPIException("getInfo", errorMessage);
+            }
+
+
+
         }
 
         public JObject getApiSettings(string apiName)
